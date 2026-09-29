@@ -1,0 +1,39 @@
+<h1>Liste des événements</h1>
+
+<div class="events">
+  @if (selectedEvent()) {
+    <div class="details">
+      <h2>Détails de l'événement</h2>
+
+      <p><strong>Titre :</strong> {{ selectedEvent()?.title }}</p>
+      <p><strong>Description :</strong> {{ selectedEvent()?.description }}</p>
+      <p><strong>Lieu :</strong> {{ selectedEvent()?.location }}</p>
+      <p><strong>Date :</strong> {{ selectedEvent()?.date }}</p>
+      <p><strong>Prix :</strong> {{ selectedEvent()?.price }} DT</p>
+      <p><strong>Places :</strong> {{ selectedEvent()?.nbPLaces }}</p>
+    </div>
+  }
+  @for (event of events(); track event.id) {
+    <div class="event-card">
+      <h2>{{ event.title }}</h2>
+
+      <p>{{ event.description }}</p>
+
+      <p>📍 {{ event.location }}</p>
+
+      <p>📅 {{ event.date }}</p>
+
+      <p>💰 {{ event.price }} DT</p>
+
+      <p>👥 {{ event.nbPLaces }} places</p>
+
+      <button (click)="details(event.id)">Details</button>
+
+      <button (click)="participer(event.id)">Participer</button>
+
+      <button (click)="modifier(event.id)">Modifier</button>
+
+      <button (click)="supprimer(event.id)">Supprimer</button>
+    </div>
+  }
+</div>

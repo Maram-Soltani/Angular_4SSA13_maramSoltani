@@ -1,0 +1,59 @@
+<div class="home">
+  <h1>{{ message() }}</h1>
+
+  <p>Ceci est ma page d'accueil Angular.</p>
+
+  <button (click)="changerMessage()">Commencer</button>
+
+  <h2>{{ title() }}</h2>
+
+  <input
+    class="search-input"
+    type="text"
+    placeholder="Search by name"
+    [(ngModel)]="searchProduct"
+  />
+
+  <p>Recherche : {{ searchProduct() }}</p>
+  @if (products().length != 0) {
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Quantité</th>
+          <th>Likes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (p of Searchbyname(); track p.id) {
+          <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.quantity }}</td>
+            <td>{{ p.likes }}</td>
+
+            <td>
+              <button (click)="increment(p.id)" class="btn btn-primary">Like</button>
+
+              <button (click)="decrement(p.id)" class="btn btn-primary">Dislike</button>
+
+              <button (click)="buy(p.id)" [disabled]="p.quantity == 0" class="btn btn-primary">
+                Buy
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>Pas de produits disponibles.</p>
+  }
+
+  <button class="btn btn-primary" (click)="save()">Save</button>
+
+  <p [style.backgroundColor]="color()">Property Binding</p>
+</div>
